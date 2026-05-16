@@ -1,56 +1,65 @@
-name: Deutsch
-description: Problem melden
+name: Bug Report (Deutsch)
+description: Melden Sie einen Fehler, um uns bei der Verbesserung zu helfen
+title: "[Bug] "
+labels: ["kind/bug", "needs-triage"]
 body:
-  - type: textarea
-    id: problem
+  - type: markdown
     attributes:
-      label: Was ist passiert?
+      value: |
+        Vielen Dank, dass Sie sich die Zeit nehmen, diesen Fehler zu melden!
+        Bitte füllen Sie das folgende Formular so vollständig wie möglich aus.
+  - type: textarea
+    id: beschreibung
+    attributes:
+      label: Fehlerbeschreibung
+      description: Eine klare und präzise Beschreibung des Fehlers.
+      placeholder: Was ist passiert?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduktion
+    attributes:
+      label: Schritte zur Reproduktion
+      description: Schritte zur Reproduktion des Verhaltens.
+      placeholder: |
+        1. Führen Sie '...' aus
+        2. Klicken Sie auf '...'
+        3. Scrollen Sie nach unten zu '...'
+        4. Fehler wird angezeigt
+    validations:
+      required: true
+  - type: textarea
+    id: erwartetes-verhalten
+    attributes:
+      label: Erwartetes Verhalten
+      description: Eine klare und präzise Beschreibung des erwarteten Verhaltens.
+    validations:
+      required: true
+  - type: textarea
+    id: umgebung
+    attributes:
+      label: Umgebung
       description: |
-        Tipp: Fügen Sie das Flag "--alsologtostderr" zur Befehlszeile hinzu, um weitere Logs zu erhalten.
+        Bitte geben Sie folgende Informationen an:
+        - Betriebssystem und Version
+        - minikube Version (`minikube version`)
+        - Kubernetes Version (`kubectl version`)
+        - Treiber (z.B. docker, virtualbox, hyperv)
+      placeholder: |
+        - OS: Ubuntu 22.04
+        - minikube: v1.30.0
+        - kubectl: v1.27.0
+        - Treiber: docker
     validations:
       required: true
   - type: textarea
     id: logs
     attributes:
-      label: Log-Datei anhängen
-      description: |
-        Tipp: Führen Sie `minikube logs --file=log.txt` aus und ziehen Sie dann die Datei `log.txt` in den Browser.
-        **WARNUNG:** Wenn Sie den HyperKit-Treiber verwenden, überprüfen Sie bitte Ihre Logs und entfernen Sie alle Umgebungsvariablen, die sensible Informationen enthalten könnten (z. B. Zugriffstoken oder Secrets).
-        Ab Minikube-Version `1.26.0` werden alle Umgebungsvariablen automatisch entfernt, bei früheren Versionen müssen diese manuell gelöscht werden.
-    validations:
-      required: true
-  - type: dropdown
-    id: operating-system
+      label: Relevante Logs
+      description: Fügen Sie relevante Log-Ausgaben ein. Dieser Bereich wird automatisch als Code formatiert.
+      render: shell
+  - type: textarea
+    id: zusaetzlicher-kontext
     attributes:
-      label: Betriebssystem
-      description: Welches Betriebssystem verwenden Sie?
-      options:
-        - macOS (Default)
-        - Windows
-        - Ubuntu
-        - Redhat/Fedora
-        - Other
-    validations:
-      required: false
-  - type: dropdown
-    id: driver
-    attributes:
-      label: Treiber
-      description: Welchen Treiber verwenden Sie?
-      options:
-        - N/A
-        - Docker
-        - Podman
-        - HyperKit
-        - Hyper-V
-        - KVM2
-        - VirtualBox
-        - None (Baremetal)
-        - SSH
-        - VMware
-        - Parallels
-        - QEMU
-        - vfkit
-        - krunkit
-    validations:
-      required: false
+      label: Zusätzlicher Kontext
+      description: Fügen Sie hier weiteren Kontext oder Screenshots zum Problem hinzu.
