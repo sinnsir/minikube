@@ -1,56 +1,70 @@
-name: Français
-description: Signaler un problème
+name: Rapport de bug (Français)
+description: Signalez un bug pour nous aider à améliorer minikube
+labels: ["kind/bug", "needs-triage"]
 body:
-  - type: textarea
-    id: problem
+  - type: markdown
     attributes:
-      label: Que s’est-il passé ?
-      description: |
-        Astuce : ajoutez le paramètre "--alsologtostderr" à la ligne de commande pour obtenir davantage de journaux.
+      value: |
+        Merci de prendre le temps de remplir ce rapport de bug ! Veuillez remplir le formulaire aussi complètement que possible.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description du bug
+      description: Une description claire et concise du bug.
+      placeholder: Décrivez le bug ici...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportement attendu
+      description: Une description claire et concise de ce que vous attendiez.
+      placeholder: Décrivez ce que vous attendiez...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Étapes pour reproduire
+      description: Étapes pour reproduire le comportement.
+      placeholder: |
+        1. Exécuter '...'
+        2. Voir l'erreur '...'
+    validations:
+      required: true
+  - type: textarea
+    id: minikube-version
+    attributes:
+      label: Version de minikube
+      description: Exécutez `minikube version` et collez la sortie ici.
+      placeholder: |
+        minikube version: v1.x.x
+        commit: ...
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environnement
+      description: Exécutez `minikube logs` et collez la sortie ici. Fournissez également des informations sur votre système d'exploitation et votre pilote.
+      placeholder: |
+        - Système d'exploitation: [ex. Ubuntu 22.04, macOS 13, Windows 11]
+        - Pilote: [ex. docker, virtualbox, hyperkit]
+        - Architecture: [ex. amd64, arm64]
     validations:
       required: true
   - type: textarea
     id: logs
     attributes:
-      label: Joindre le fichier de journal
-      description: |
-        Astuce : exécutez `minikube logs --file=log.txt`, puis faites glisser et déposez le fichier `log.txt` dans le navigateur.
-        **AVERTISSEMENT :** Si vous utilisez le pilote HyperKit, veuillez vérifier vos journaux et supprimer toute variable d’environnement susceptible de contenir des informations sensibles (par ex. jetons d’accès ou secrets).
-        Toutes les variables d’environnement seront automatiquement supprimées à partir de la version `1.26.0` de minikube, mais pour les versions antérieures, elles doivent être supprimées manuellement.
-    validations:
-      required: true
-  - type: dropdown
-    id: operating-system
-    attributes:
-      label: Système d’exploitation
-      description: Quel est votre système d’exploitation ?
-      options:
-        - macOS (Default)
-        - Windows
-        - Ubuntu
-        - Redhat/Fedora
-        - Other
+      label: Journaux de sortie
+      description: Copiez et collez les journaux pertinents. Ceux-ci seront automatiquement formatés en code.
+      render: shell
     validations:
       required: false
-  - type: dropdown
-    id: driver
+  - type: textarea
+    id: additional
     attributes:
-      label: Pilote
-      description: Quel pilote utilisez-vous ?
-      options:
-        - N/A
-        - Docker
-        - Podman
-        - HyperKit
-        - Hyper-V
-        - KVM2
-        - VirtualBox
-        - None (Baremetal)
-        - SSH
-        - VMware
-        - Parallels
-        - QEMU
-        - vfkit
-        - krunkit
+      label: Contexte supplémentaire
+      description: Ajoutez tout autre contexte concernant le problème ici.
     validations:
       required: false
